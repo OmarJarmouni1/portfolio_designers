@@ -1,34 +1,32 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Code2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
     {
-        title: 'E-Commerce Platform',
-        description: 'A full-featured online store with real-time inventory and stripe integration.',
+        title: 'E-commerce Dashboard',
+        description: 'A comprehensive analytics dashboard for managing online store operations and performance.',
         tech: ['Next.js', 'TypeScript', 'Prisma', 'Stripe'],
-        link: '#',
+        link: 'https://ecommerce-dashboard-3yuv.vercel.app/login',
         github: '#',
-        image: 'bg-zinc-100 dark:bg-zinc-900',
+        image: "/img/projects/ecomdash.png",
     },
     {
-        title: 'AI Content Generator',
-        description: 'Leveraging OpenAI API to generate high-quality marketing copy and blog posts.',
+        title: 'E-commerce Website',
+        description: 'A modern, high-performance online shopping experience with seamless checkout.',
         tech: ['React', 'Node.js', 'OpenAI', 'Tailwind'],
-        link: '#',
+        link: 'https://ecommerce-web-nine-sigma.vercel.app/',
         github: '#',
-        image: 'bg-zinc-100 dark:bg-zinc-900',
+        image: '/img/projects/ecomweb.png',
     },
     {
-        title: 'Task Management Suite',
-        description: 'A collaborative tool for teams to manage projects with kanban boards.',
+        title: 'CRM System',
+        description: 'A customer relationship management platform designed for productivity and growth.',
         tech: ['React', 'Firebase', 'Dnd Kit', 'Context API'],
-        link: '#',
+        link: 'https://rmko-crm.vercel.app/login',
         github: '#',
-        image: 'bg-zinc-100 dark:bg-zinc-900',
+        image: '/img/projects/crm.png',
     },
 ];
 
@@ -44,7 +42,7 @@ export function Projects() {
                         </p>
                     </div>
                     <a
-                        href="https://github.com"
+                        href="https://github.com/OmarJarmouni1?tab=repositories"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-accent transition-colors"
@@ -63,13 +61,16 @@ export function Projects() {
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
                             className="group flex flex-col h-full"
                         >
-                            <div className={cn(
-                                "aspect-[16/10] rounded-2xl mb-6 overflow-hidden border border-border relative",
-                                project.image
-                            )}>
-                                <div className="absolute inset-0 flex items-center justify-center text-muted/30 group-hover:scale-110 transition-transform duration-500">
-                                    <Code2 className="h-16 w-16" />
-                                </div>
+                            <div className="aspect-[16/10] rounded-2xl mb-6 overflow-hidden border border-border relative bg-zinc-100 dark:bg-zinc-900">
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    onError={(e) => {
+                                        console.error(`Failed to load image: ${project.image}`);
+                                        e.currentTarget.style.display = 'none';
+                                    }}
+                                />
                                 {/* Overlay on hover */}
                                 <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
                                     <a href={project.github} className="p-3 bg-background rounded-full hover:scale-110 transition-transform shadow-lg">

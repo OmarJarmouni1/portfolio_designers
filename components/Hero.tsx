@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { ArrowUpRight, MousePointer2, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function Hero() {
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -17,12 +17,12 @@ export function Hero() {
         },
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, ease: "easeOut" },
+            transition: { duration: 0.6, ease: "easeOut" as any },
         },
     };
 
@@ -82,7 +82,7 @@ export function Hero() {
                         variants={itemVariants}
                         className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 pt-2"
                     >
-                        {["Next.js Expert", "UI/UX Specialist", "7+ Years Exp"].map((text, i) => (
+                        {["Software Engineer", "Data Analytics", "5 Years Exp"].map((text, i) => (
                             <div key={i} className="flex items-center gap-2">
                                 <CheckCircle2 className="w-4 h-4 text-zinc-900 dark:text-zinc-50" />
                                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">{text}</span>

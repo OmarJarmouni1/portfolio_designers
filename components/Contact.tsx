@@ -19,6 +19,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export function Contact() {
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
     const {
         register,
         handleSubmit,
@@ -29,12 +30,29 @@ export function Contact() {
     });
 
     const onSubmit = async (data: ContactFormData) => {
-        // Simulate API call
-        console.log('Form data:', data);
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        setIsSubmitted(true);
-        reset();
-        setTimeout(() => setIsSubmitted(false), 5000);
+        setSubmitError(null);
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Something went wrong');
+            }
+
+            setIsSubmitted(true);
+            reset();
+            setTimeout(() => setIsSubmitted(false), 5000);
+        } catch (error: any) {
+            console.error('Form submission error:', error);
+            setSubmitError(error.message || 'Failed to send message. Please try again.');
+        }
     };
 
     return (
@@ -64,19 +82,19 @@ export function Contact() {
                                 </div>
                                 <div>
                                     <div className="text-sm font-bold uppercase tracking-widest text-muted">Email</div>
-                                    <a href="mailto:hello@example.com" className="text-lg font-medium hover:text-accent transition-colors">hello@example.com</a>
+                                    <a href="mailto:omar.jarmouni@hotmail.com" className="text-lg font-medium hover:text-accent transition-colors">omar.jarmouni@hotmail.com</a>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-4">
+                            {/* <div className="flex items-center gap-4">
                                 <div className="h-12 w-12 rounded-full bg-accent/5 flex items-center justify-center text-accent">
                                     <Phone className="h-5 w-5" />
                                 </div>
                                 <div>
                                     <div className="text-sm font-bold uppercase tracking-widest text-muted">Phone</div>
-                                    <a href="tel:+1234567890" className="text-lg font-medium hover:text-accent transition-colors">+1 (234) 567-890</a>
+                                    <a href="tel:+1234567890" className="text-lg font-medium hover:text-accent transition-colors">+971</a>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="flex items-center gap-4">
                                 <div className="h-12 w-12 rounded-full bg-accent/5 flex items-center justify-center text-accent">
@@ -175,6 +193,17 @@ export function Contact() {
                                         />
                                         {errors.message && <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">{errors.message.message}</p>}
                                     </div>
+
+                                    {submitError && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm font-medium flex items-center gap-2"
+                                        >
+                                            <div className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                                            {submitError}
+                                        </motion.div>
+                                    )}
 
                                     <button
                                         type="submit"

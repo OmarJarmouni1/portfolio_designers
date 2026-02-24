@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Globe, Server, Smartphone, Layout, Zap, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Globe, Server, Smartphone, Layout, Zap, ShieldCheck, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const services = [
@@ -29,10 +29,10 @@ const services = [
     },
     {
         id: '04',
-        title: 'Pixel Perfect UI',
-        description: 'High-fidelity design systems coupled with accessible, component-driven development.',
-        icon: Layout,
-        tag: 'Design'
+        title: 'Data Analytics & Insights',
+        description: 'Turning raw data into strategic assets through advanced statistical modeling and visualization.',
+        icon: BarChart3,
+        tag: 'Insights'
     },
     {
         id: '05',

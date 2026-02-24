@@ -7,6 +7,15 @@ import { motion } from 'framer-motion';
 
 export function ThemeToggle() {
     const { setTheme, theme } = useTheme();
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return <div className="h-9 w-9 rounded-md border border-border bg-background" />;
+    }
 
     return (
         <button

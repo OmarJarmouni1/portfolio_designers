@@ -44,7 +44,9 @@
   --accent: #2563eb;
   --muted: #8d8d8d;
   --border: #f0f0f0;
+  --skill-card-bg: #FFFFFF;
   --font-geist-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
 }
 
 .dark {
@@ -53,7 +55,10 @@
   --accent: #3b82f6;
   --muted: #a3a3a3;
   --border: #262626;
+  --skill-card-bg: #09090b;
 }
+
+
 
 @layer base {
   * {
