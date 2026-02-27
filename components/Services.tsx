@@ -52,7 +52,7 @@ const services = [
 
 export function Services() {
     return (
-        <section id="services" className="section-padding bg-zinc-50/30 dark:bg-zinc-900/10 overflow-hidden relative">
+        <section id="services" className="section-padding bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden relative">
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
                     <div className="space-y-6 max-w-2xl">
